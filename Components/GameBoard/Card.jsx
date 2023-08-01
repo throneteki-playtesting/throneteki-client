@@ -231,6 +231,20 @@ class InnerCard extends React.Component {
         return (<div className='card-order'>{ this.props.card.order }</div>);
     }
 
+    getAlertStatus() {
+        if(!this.props.card.alertStatus) {
+            return null;
+        }
+
+        return (
+            <div className={ 'status-container ' + this.props.card.alertStatus.type }>
+                <div className='status-icon glyphicon glyphicon-exclamation-sign'>
+                </div>
+                <span className="status-message">{ this.props.card.alertStatus.message }</span>
+            </div>
+        );
+    }
+
     showMenu() {
         if(!this.isAllowedMenuSource()) {
             return false;
@@ -303,6 +317,7 @@ class InnerCard extends React.Component {
                         { image }
                     </div>
                     { !this.props.hideTokens ? <CardCounters counters={ this.getCountersForCard(this.props.card) } /> : null }
+                    { !this.isFacedown() ? this.getAlertStatus() : null }
                 </div>
                 { this.showMenu() ? <CardMenu menu={ this.props.card.menu } onMenuItemClick={ this.onMenuItemClick } /> : null }
             </div>);
@@ -400,7 +415,11 @@ InnerCard.propTypes = {
         strength: PropTypes.number,
         tokens: PropTypes.object,
         type: PropTypes.string,
-        unselectable: PropTypes.bool
+        unselectable: PropTypes.bool,
+        alertStatus: PropTypes.shape({
+            type: PropTypes.string,
+            message: PropTypes.string
+        })
     }).isRequired,
     className: PropTypes.string,
     connectDragPreview: PropTypes.func,
