@@ -420,7 +420,11 @@ InnerCard.propTypes = {
         strength: PropTypes.number,
         tokens: PropTypes.object,
         type: PropTypes.string,
-        unselectable: PropTypes.bool
+        unselectable: PropTypes.bool,
+        alertStatus: PropTypes.shape({
+            type: PropTypes.string,
+            message: PropTypes.string
+        })
     }).isRequired,
     className: PropTypes.string,
     connectDragPreview: PropTypes.func,
