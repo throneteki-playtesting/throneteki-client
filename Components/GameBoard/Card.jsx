@@ -238,9 +238,8 @@ class InnerCard extends React.Component {
 
         return (
             <div className={ 'status-container ' + this.props.card.alertStatus.type }>
-                <div className='status-icon glyphicon glyphicon-exclamation-sign'>
-                </div>
-                <span className="status-message">{ this.props.card.alertStatus.message }</span>
+                <div className='status-icon glyphicon glyphicon-exclamation-sign'/>
+                <span className='status-message'>{ this.props.card.alertStatus.message }</span>
             </div>
         );
     }
@@ -389,6 +388,11 @@ class InnerCard extends React.Component {
 InnerCard.displayName = 'Card';
 InnerCard.propTypes = {
     card: PropTypes.shape({
+        alertStatus: PropTypes.shape({
+            type: PropTypes.string,
+            message: PropTypes.string
+        }),
+        assault: PropTypes.bool,
         attached: PropTypes.bool,
         attachments: PropTypes.array,
         baseStrength: PropTypes.number,
@@ -402,6 +406,7 @@ InnerCard.propTypes = {
         iconsRemoved: PropTypes.array,
         inChallenge: PropTypes.bool,
         inDanger: PropTypes.bool,
+        isContributing: PropTypes.bool,
         kneeled: PropTypes.bool,
         menu: PropTypes.array,
         name: PropTypes.string,
